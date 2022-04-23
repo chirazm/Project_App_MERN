@@ -48,7 +48,7 @@ export default function ProductScreen(props) {
                                     {product.countInStock > 0 ? (
                                         <span className='success'> In Stock </span> 
                                     ) : (
-                                        <span className='error'> Unvailable</span>
+                                        <span className='danger'> Unvailable</span>
                                     )}
                                 </div>  
                             </div>
