@@ -1,6 +1,7 @@
 import './index.css';
 import React from 'react';
 import data from './data'
+import Product from './components/Product'
 function App() {
   return (
     <div class="grid-container">

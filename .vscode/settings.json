@@ -1,0 +1,7 @@
+{
+    "eslint.enable": true,
+    "eslint.quiet": true,
+    "eslint.options": {
+    
+    }
+}
