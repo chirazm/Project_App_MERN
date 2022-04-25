@@ -5,8 +5,8 @@ import { addToCart } from '../actions/cartActions';
 export default function CartScreen(props) {
     const productId = props.match.params.id;
     const qty = props.location.search
-        ? Number(props.location.search.split('=')[1])
-        : 1;
+    ? Number(props.location.search.split('=')[1])
+    : 1;
     const dispatch = useDispatch();
     useEffect(() => {
         if (productId) {
@@ -15,10 +15,8 @@ export default function CartScreen(props) {
     }, [dispatch, productId, qty]);
   return (
     <div>
-        <h1>Cart Screen</h1>
-        <p>
-            Add To Cart : ProductID : {productId} Quantity: {qty}
-        </p>
+        <h1>CartScreen</h1>
+        <p>Add To Cart : ProductID: {productId} Quantity: {qty} </p>
     </div>
   )
 }
