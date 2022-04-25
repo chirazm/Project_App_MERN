@@ -4,20 +4,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
 import { detailsProduct } from '../actions/productActions';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function ProductScreen(props) {
+
     const dispatch = useDispatch();
-    const productId = props.match.params.id;
+
+    const params = useParams();
+    const { id: productId } = params;  
+      
     const [qty, setQty] = useState(1);
     const productDetails = useSelector(state => state.productDetails);
     const {loading, error, product} = productDetails;
-
+    const navigate = useNavigate();
     useEffect(() =>{
         dispatch(detailsProduct(productId));
     }, [dispatch, productId] );
 
     const addToCartHandler = () => {
-        props.history.push(`/cart/${productId}?qty=${qty}`);
+        navigate(`/cart/${productId}?qty=${qty}`);
     };
   return (
     <div>

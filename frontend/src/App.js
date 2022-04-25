@@ -1,6 +1,6 @@
 import './index.css';
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
@@ -13,21 +13,26 @@ function App() {
           <div className="grid-container">
     <header className="row">
       <div>
-        <a className="brand" href="/">Amazona</a>
+        <Link className="brand" to="/">Amazona</Link>
       </div>
       <div>
-        <a href="/cart">Cart 
-          {cartItems.length > 0 && (
-            <span className='badge'> {cartItems.length} </span>
-          )}
-        </a>
-        <a href="/signin">Sign In</a>
+      <Link to="/cart">
+              Cart
+              {cartItems.length > 0 && (
+                <span className="badge">{cartItems.length}</span>
+              )}
+      </Link>
+        <Link to="/signin">Sign In</Link>
       </div>
     </header>
     <main>
-      <Route path="/cart/:id?" component={CartScreen}></Route>
-      <Route path="/product/:id" component={ProductScreen}></Route>
-      <Route path="/" component={HomeScreen} exact></Route>
+      <Routes>
+        <Route path="/cart" element={<CartScreen/>}></Route>
+        <Route path="/cart/:id" element={<CartScreen />}></Route>
+        <Route path="/product/:id" element={<ProductScreen/>}></Route>
+        <Route path="/" element={<HomeScreen/>} exact></Route>
+      </Routes>
+   
      
     </main>
     <footer className="row center">All right reserved</footer>
