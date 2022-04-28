@@ -1,21 +1,45 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Input } from "antd";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux'
+import { signin } from '../actions/userActions'
+import { useSelector } from 'react-redux';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
-export default function SigninScreen(){
+export default function SigninScreen(props){
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const submitHandler = (e) =>{
+
+  const navigate = useNavigate();
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get('redirect');
+  const redirect = redirectInUrl ? redirectInUrl : '/';
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo, loading, error } = userSignin;
+
+  const dispatch = useDispatch();
+  const submitHandler = (e) => {
     e.preventDefault();
-  }
+    dispatch(signin(email, password));
+  };
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, redirect, userInfo]);
+
   return(
     <div>
       <form className='form' onSubmit={submitHandler}>
           <div>
             <h1>Sign In</h1>
           </div>
+          {loading && <LoadingBox></LoadingBox>}
+          {error && <MessageBox variant="danger"> {error} </MessageBox>}
           <div>
             <label htmlFor='email'>Email address :</label>
             <div>
