@@ -79,13 +79,14 @@ export default function CartScreen(props) {
         <div className='car card-body'>
           <ul>
             <li>
-              <h2>
+              <h2 style={{marginLeft : "140px"}}>
                 Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) 
-                : TND {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                :  {cartItems.reduce((a, c) => a + c.price * c.qty, 0)} TND
               </h2>
             </li>
             <li>
               <button type='button' 
+              style={{marginLeft : "140px", maxWidth : "220px" }}
               onClick={checkoutHandler} 
               className="primary block"
               disabled={cartItems.length === 0}>Proceed to Checkout</button>

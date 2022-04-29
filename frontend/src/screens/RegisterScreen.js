@@ -42,7 +42,7 @@ export default function RegisterScreen(props) {
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         <div>
-          <label htmlFor="name" style={{ marginLeft: "27px" }}>Name</label>
+          <label htmlFor="name" style={{ marginLeft: "30px" }}>Name</label>
           <input
             style={{ marginLeft: "27px" }}
             type="text"
@@ -53,7 +53,7 @@ export default function RegisterScreen(props) {
           ></input>
         </div>
         <div>
-          <label htmlFor="email" style={{ marginLeft: "27px" }} >Email address</label>
+          <label htmlFor="email" style={{ marginLeft: "30px" }} >Email address</label>
           <input
             style={{ marginLeft: "27px" }}
             type="email"
@@ -64,7 +64,7 @@ export default function RegisterScreen(props) {
           ></input>
         </div>
         <div>
-          <label htmlFor="password" style={{ marginLeft: "27px" }}>Password</label>
+          <label htmlFor="password" style={{ marginLeft: "30px" }}>Password</label>
           <input
             style={{ marginLeft: "27px" }}
             type="password"
@@ -75,7 +75,7 @@ export default function RegisterScreen(props) {
           ></input>
         </div>
         <div>
-          <label htmlFor="confirmPassword" style={{ marginLeft: "27px" }}>Confirm Password</label>
+          <label htmlFor="confirmPassword" style={{ marginLeft: "30px" }}>Confirm Password</label>
           <input
             style={{ marginLeft: "27px" }}
             type="password"

@@ -95,6 +95,7 @@ export default function ProductScreen(props) {
                                         </li>
                                         <li>
                                             <button 
+                                                style={{marginLeft :"0px"}}
                                                 onClick={addToCartHandler}
                                                 className='primary block'>Add to Cart
                                             </button>
