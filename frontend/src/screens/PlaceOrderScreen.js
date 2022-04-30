@@ -44,7 +44,7 @@ export default function PlaceOrderScreen() {
             <div className="card card-body">
               <h2>Payment</h2>
               <p>
-                <strong>Method:</strong> {cart.PaymentMethod}
+                <strong>Method:</strong> {cart.paymentMethod}
 
               </p>
             </div>
