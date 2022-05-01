@@ -203,8 +203,17 @@ img.large{
 .alert-danger{
   color: #a02020;
   background-color: #ffe0e0e0;
-}
+  font-weight: bold;
+  
 
+}
+.alert-success {
+  color: #20a020;
+  background-color: #ffe0e0;
+  font-weight: bold;
+  background-color: #90EE90;
+  
+}
 /* Form */ 
 .form {
   max-width: 55rem;
