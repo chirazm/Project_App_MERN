@@ -47,7 +47,7 @@ const reducer = combineReducers({
     orderCreate : orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
-    orderMineList: orderMineListReducer,
+    orderMineList : orderMineListReducer,
   });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
