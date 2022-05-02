@@ -15,6 +15,8 @@ import OrderScreen from './screens/OrderScreen';
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
+import ProductListScreen from './screens/ProductListScreen';
 
 function App() {
 
@@ -63,9 +65,29 @@ function App() {
             </div>
           ) : (
             <Link to="/signin">Sign In</Link>
-          )
-        }
-        
+          )}
+          {
+            userInfo && userInfo.isAdmin && (
+              <div className='dropdown'>
+                <Link to="#admin"> 
+                  Admin <i  className='fa fa-caret-down'></i>
+                </Link>
+                <ul className='dropdown-content'>
+                  <li>
+                    <Link to="/dashbord">Dashbord</Link>
+                  </li>
+                  <li>
+                    <Link to="/productlist">Products</Link>
+                  </li>
+                  <li>
+                    <Link to="/orderlist">Orders</Link>
+                  </li>
+                  <li>
+                    <Link to="/userlist">Users</Link>
+                  </li>
+                </ul>
+              </div>
+            )}
       </div>
     </header>
     <main>
@@ -81,6 +103,7 @@ function App() {
         <Route path="/order/:id" element={< OrderScreen />}></Route>
         <Route path="/orderhistory" element={< OrderHistoryScreen />}></Route>
         <Route path="/profile" element={ <PrivateRoute> < ProfileScreen /> </PrivateRoute> }></Route>
+        <Route path="/productlist" element={ <AdminRoute> < ProductListScreen /> </AdminRoute> }></Route>
         <Route path="/" element={< HomeScreen />} exact></Route>
       </Routes>
    

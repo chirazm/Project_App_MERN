@@ -12,7 +12,7 @@ export default function PaymentMethodScreen(props) {
         if (!shippingAddress.address) {
             navigate('/shipping');
         };
-    }, [])
+    }, []) //eslint-disable-line
   const [paymentMethod, setPaymentMethod] = useState('PayPal');
   const dispatch = useDispatch();
   const submitHandler = (e) => {

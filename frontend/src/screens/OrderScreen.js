@@ -8,7 +8,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { ORDER_PAY_RESET } from '../constants/orderConstants';
 
-export default function OrderScreen(props) {
+export default function OrderScreen() {
   const params = useParams();
   const { id: orderId } = params; 
   const [sdkReady, setSdkReady] = useState(false);
@@ -47,7 +47,7 @@ export default function OrderScreen(props) {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady]);
+  }, [dispatch, order, orderId, sdkReady]); //eslint-disable-line
 
   const successPaymentHandler = (paymentResult) => {
       dispatch(payOrder(order, paymentResult));
