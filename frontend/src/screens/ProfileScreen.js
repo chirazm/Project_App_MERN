@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { detailsUser, updateUserProfile } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstant';
 
 export default function ProfileScreen() {
     const dispatch = useDispatch();
@@ -27,7 +26,6 @@ export default function ProfileScreen() {
     } = userUpdateProfile;
     useEffect(() => {
         if (!user) {
-            dispatch({type: USER_UPDATE_PROFILE_RESET})
             dispatch(detailsUser(userInfo._id));
         } else {
             setName(user.name);
@@ -54,13 +52,12 @@ export default function ProfileScreen() {
                         loading? <LoadingBox></LoadingBox>
                         :
                         error? <MessageBox variant="danger"> {error} </MessageBox>
-                        :
+                        : (
                         <>
                             {loadingUpdate && <LoadingBox></LoadingBox> }
-                            {errorUpdate && (
-                                <MessageBox variant="danger"> {errorUpdate} </MessageBox>
-                            )}
-                            {successUpdate && <MessageBox>Profile Update Successfully</MessageBox>}
+                            {errorUpdate && (<MessageBox variant="danger">{errorUpdate}</MessageBox>)}
+                            {successUpdate && (<MessageBox variant="success">Profile Updated Successfully</MessageBox>)}
+                            <br/>
                             <div>
                                 <label htmlFor='name' style={{ marginLeft: "30px" }}> Name </label>
                                 <input
@@ -113,13 +110,14 @@ export default function ProfileScreen() {
                                 <button 
                                     className='primary' 
                                     type='submit'
-                                    style={{ marginLeft: "90px" }}
+                                    style={{ marginLeft: "86px" }}
                                 >
                                     Update
                                 </button>
                             </div>
                         </>
-                    }
+
+                        )}
                 </div>
             </div>
         </form>
