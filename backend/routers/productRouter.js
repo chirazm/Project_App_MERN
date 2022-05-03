@@ -2,14 +2,23 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import data from "../data.js";
 import Product from "../models/productModel.js";
-import { isAdmin, isAuth } from '../utils.js';
+import { isAdmin, isAuth, isSeller, isSellerOrAdmin } from '../utils.js';
 
 const productRouter= express.Router();
 
-productRouter.get('/', expressAsyncHandler(async(req, res)=>{
-    const products = await Product.find({});
+productRouter.get(
+  '/',
+   expressAsyncHandler(async(req, res)=>{
+    const seller = req.query.seller || '';
+    const sellerFilter = seller? {seller}: {};
+    const name = req.query.name || '';
+    const nameFilter = name ? { name: {$regex: name, $options: 'i'} } : {};
+    const products = await Product.find({
+      ...sellerFilter
+    }).populate('');
     res.send(products);
 }));
+
 productRouter.get(
     '/seed',
     expressAsyncHandler(async(req, res)=>{
@@ -20,7 +29,9 @@ productRouter.get(
 })
 );
 
-productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
+productRouter.get(
+  '/:id', 
+  expressAsyncHandler(async(req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
         res.send(product);
@@ -32,7 +43,7 @@ productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
 productRouter.post(
     '/',
     isAuth,
-    isAdmin,
+    isSellerOrAdmin,
     expressAsyncHandler(async (req, res) => {
       const product = new Product({
         name: 'sample name ' + Date.now(),
@@ -54,7 +65,7 @@ productRouter.post(
 productRouter.put(
     '/:id',
     isAuth,
-    isAdmin,
+    isSellerOrAdmin,
     expressAsyncHandler(async (req, res) => {
       const productId = req.params.id;
       const product = await Product.findById(productId);

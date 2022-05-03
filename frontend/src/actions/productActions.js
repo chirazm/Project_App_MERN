@@ -10,12 +10,12 @@ import {    PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS,
             PRODUCT_UPDATE_SUCCESS
         } from "../constants/productConstant"
 
-export const listProducts = () => async (dispatch)=> {
+export const listProducts = ({ seller = ''}) => async (dispatch)=> {
     dispatch({
         type : PRODUCT_LIST_RESQUEST,
     });
     try{
-        const {data} = await Axios.get('/api/products');
+        const {data} = await Axios.get(`/api/products?seller=${seller}`);
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
     }catch(error){
         dispatch({type: PRODUCT_LIST_FAIL, payload: error.message});

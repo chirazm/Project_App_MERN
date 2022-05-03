@@ -3,9 +3,11 @@ import {useSelector, useDispatch} from 'react-redux'
 import { deleteOrder, listOrders } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function OrderListScreen() {
+  const { pathname } = useLocation();
+  const sellerMode = pathname.indexOf('/seller') >= 0;
   const navigate = useNavigate();
 
   const orderList = useSelector(state => state.orderList);
@@ -17,10 +19,11 @@ export default function OrderListScreen() {
       error : errorDelete , 
       success : successDelete
     } = orderDelete;
-
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
   const dispatch = useDispatch();
   useEffect(() => {
-      dispatch(listOrders());
+      dispatch(listOrders({ seller: sellerMode ? userInfo._id : ''}));
   }, [dispatch, successDelete]);
   const deleteHandler = (order) => {
     if (window.confirm('Are you sure to delete?')) {

@@ -28,15 +28,20 @@ export default function ProductEditScreen() {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (successUpdate) {
-        dispatch({type: PRODUCT_UPDATE_RESET});
+
+    if (successUpdate ) {
         navigate('/productlist');
       }
-      if(!product || (product._id !== productId)) {
+   
+      if(!product || (product._id !== productId || successUpdate)) {
+          dispatch({type: PRODUCT_UPDATE_RESET});
           dispatch(detailsProduct(productId));
       } else {
         setName(product.name);
@@ -47,7 +52,7 @@ export default function ProductEditScreen() {
         setBrand(product.brand);
         setDescription(product.description);
       }
-  }, [product, dispatch, productId, navigate, successUpdate]);
+  }, [product, dispatch, productId, navigate, successUpdate, userInfo.isAdmin, userInfo.isSeller]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -65,9 +70,6 @@ export default function ProductEditScreen() {
 
   const [loadingUpload, setLoadingUpload] = useState(false);
   const [errorUpload, setErrorUpload] = useState('');
-
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
