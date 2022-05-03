@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { detailsProduct } from '../actions/productActions';
+import { detailsProduct, updateProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstant';
 
 export default function ProductEditScreen() {
   const params = useParams();
@@ -16,11 +17,24 @@ export default function ProductEditScreen() {
   const [brand, setBrand] = useState('');
   const [description, setDescription] = useState('');
 
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = productUpdate;
+
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (successUpdate) {
+        dispatch({type: PRODUCT_UPDATE_RESET});
+        navigate('/productlist');
+      }
       if(!product || (product._id !== productId)) {
           dispatch(detailsProduct(productId));
       } else {
@@ -36,7 +50,16 @@ export default function ProductEditScreen() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
+    dispatch(updateProduct({
+        _id: productId,
+        name,
+        price,
+        image,
+        category,
+        brand,
+        countInStock,
+        description,
+    }))
   };
 
   return (
@@ -45,6 +68,8 @@ export default function ProductEditScreen() {
         <div>
           <h1>Edit Product {productId}</h1>
         </div>
+        {loadingUpdate && <LoadingBox></LoadingBox>}
+        {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
         {loading ? (<LoadingBox></LoadingBox>
         ) : error ? (<MessageBox variant="danger">{error}</MessageBox>
         ) : (
