@@ -333,3 +333,8 @@ img.large{
   border-right: none;
   margin-left: 0.5rem;
 }
+
+/* Carousel */
+.carousel .slide img{
+  max-width: 30rem;
+}
