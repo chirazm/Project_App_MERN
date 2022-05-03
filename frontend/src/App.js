@@ -22,6 +22,7 @@ import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import SellerRoute from './components/SellerRoute';
+import SellerScreen from './screens/SellerScreen';
 function App() {
 
   const cart = useSelector(state => state.cart);
@@ -112,6 +113,7 @@ function App() {
     </header>
     <main>
       <Routes>
+        <Route path="/" element={< HomeScreen />} exact></Route>
         <Route path="/cart" element={< CartScreen />}></Route>
         <Route path="/cart/:id" element={< CartScreen />}></Route>
         <Route path="/product/:id" element={< ProductScreen/>} exact ></Route>
@@ -130,7 +132,7 @@ function App() {
         <Route path="/user/:id/edit" element={ <AdminRoute> < UserEditScreen /> </AdminRoute> }></Route>
         <Route path="/productlist/seller" element={ <SellerRoute> < ProductListScreen /> </SellerRoute> }></Route>
         <Route path="/orderlist/seller" element={ <SellerRoute> < OrderListScreen /> </SellerRoute> }></Route>
-        <Route path="/" element={< HomeScreen />} exact></Route>
+        <Route path="/seller/:id" element={ < SellerScreen />}></Route>
       </Routes>
    
      <br/><br/><br/><br/><br/><br/>

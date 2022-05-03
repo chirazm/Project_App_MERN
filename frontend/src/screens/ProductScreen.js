@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
 import { detailsProduct } from '../actions/productActions';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function ProductScreen(props) {
 
@@ -56,6 +56,18 @@ export default function ProductScreen(props) {
                 <div className='col-1'>
                     <div className='card card-body'>
                         <ul>
+                            <li>
+                                Seller{' '}
+                                <h2>
+                                <Link to={`/seller/${product.seller._id}`}>
+                                    {product.seller.seller.name}
+                                </Link>
+                                </h2>
+                                <Rating 
+                                    rating={product.seller.seller.rating} 
+                                    numReviews={product.seller.seller.numReviews}>
+                                </Rating>
+                            </li>
                             <li>
                                 <div className='row'> 
                                     <div>Price</div>
