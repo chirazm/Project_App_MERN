@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { useNavigate } from 'react-router-dom';
-import { createProduct, listProducts } from '../actions/productActions';
-import { PRODUCT_CREATE_RESET } from '../constants/productConstant';
+import { createProduct, deleteProduct, listProducts } from '../actions/productActions';
+import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../constants/productConstant';
 
 export default function ProductListScreen() {
   const navigate = useNavigate();
   const productList = useSelector(state => state.productList);
   const { loading, error, products } = productList;
+  
   const productCreate = useSelector(state => state.productCreate);
   const { 
       loading: loadingCreate, 
@@ -18,6 +19,13 @@ export default function ProductListScreen() {
       product: createdProduct 
   } = productCreate;
 
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,11 +33,16 @@ export default function ProductListScreen() {
           dispatch({type: PRODUCT_CREATE_RESET});
           navigate(`/product/${createdProduct._id}/edit`);
       }
+      if (successDelete) {
+        dispatch({ type: PRODUCT_DELETE_RESET });
+      }
       dispatch(listProducts());
-  },[createdProduct ,dispatch, navigate, successCreate]);
+  },[createdProduct ,dispatch, navigate, successCreate, successDelete]);
 
-  const deleteHandler = () => {
-
+  const deleteHandler = (product) => {
+    if (window.confirm('Are you sure to delete?')) {
+        dispatch(deleteProduct(product._id));
+      }
   };
 
   const createHandler = () => {
@@ -43,8 +56,13 @@ export default function ProductListScreen() {
                 Create Product
             </button>
         </div>
+
+        {loadingDelete && <LoadingBox></LoadingBox>}
+        {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
+
         {loadingCreate && <LoadingBox></LoadingBox> }
         {errorCreate && (<MessageBox variant="danger">{errorCreate}</MessageBox>)}
+
         { loading? <LoadingBox></LoadingBox>
           :
           error? <MessageBox variant="danger"> {error} </MessageBox>  
