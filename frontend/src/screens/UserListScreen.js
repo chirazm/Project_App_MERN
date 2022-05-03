@@ -1,25 +1,43 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { listUsers } from '../actions/userActions';
+import { deleteUser, listUsers } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-
+import MessageBoxTimer from '../components/MessageBoxTimer'
 export default function UserListScreen() {
   const navigate = useNavigate();
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = userDelete;
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(listUsers());
-  }, [dispatch]);
+  }, [dispatch, userDelete]);
+
+  const deleteHandler = (user) => {
+    if (window.confirm('Are you sure?')) {
+      dispatch(deleteUser(user._id));
+    }
+  }
 
   return (
     <div>
       <h1>Users</h1>
-      
+
+      {loadingDelete && <LoadingBox></LoadingBox>}
+      {errorDelete && <MessageBoxTimer variant="danger">{errorDelete}</MessageBoxTimer>}
+      {successDelete && (
+        <MessageBoxTimer variant="success">User Deleted Successfully</MessageBoxTimer>
+      )}
+
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -54,6 +72,7 @@ export default function UserListScreen() {
                   <button
                     type="button"
                     className="small"
+                    onClick={() => deleteHandler(user)}
                   >
                     Delete
                   </button>
