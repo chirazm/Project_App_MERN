@@ -66,6 +66,7 @@ export default function UserListScreen() {
                   <button
                     type="button"
                     className="small"
+                    onClick={() => navigate(`/user/${user._id}/edit`)}
                   >
                     Edit
                   </button>
