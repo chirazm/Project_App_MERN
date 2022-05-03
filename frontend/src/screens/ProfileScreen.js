@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { detailsUser, updateUserProfile } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-
+import MessageBoxTimer from '../components/MessageBoxTimer';
 export default function ProfileScreen() {
     const dispatch = useDispatch();
 
@@ -56,7 +56,7 @@ export default function ProfileScreen() {
                         <>
                             {loadingUpdate && <LoadingBox></LoadingBox> }
                             {errorUpdate && (<MessageBox variant="danger">{errorUpdate}</MessageBox>)}
-                            {successUpdate && (<MessageBox variant="success">Profile Updated Successfully</MessageBox>)}
+                            {successUpdate && (<MessageBoxTimer variant="success">Profile Updated Successfully</MessageBoxTimer>)}
                             <br/>
                             <div>
                                 <label htmlFor='name' style={{ marginLeft: "30px" }}> Name </label>

@@ -11,7 +11,7 @@ export default function HomeScreen() {
   const {loading, error, products} = productList;
   useEffect(()=>{
     dispatch(listProducts()); 
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [dispatch]); 
   return (
     <div>
       {loading? <LoadingBox></LoadingBox>

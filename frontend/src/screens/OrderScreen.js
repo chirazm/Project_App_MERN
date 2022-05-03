@@ -47,7 +47,7 @@ export default function OrderScreen() {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady]); //eslint-disable-line
+  }, [dispatch, order, orderId, sdkReady, successPay]); 
 
   const successPaymentHandler = (paymentResult) => {
       dispatch(payOrder(order, paymentResult));
