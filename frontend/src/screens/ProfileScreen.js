@@ -5,6 +5,8 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import MessageBoxTimer from '../components/MessageBoxTimer';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstant';
+import  Axios  from 'axios';
+
 export default function ProfileScreen() {
     const dispatch = useDispatch();
 
@@ -59,7 +61,29 @@ export default function ProfileScreen() {
                 sellerDescription,
             }));
         }
+    };
+    const [loadingUpload, setLoadingUpload] = useState(false);
+  const [errorUpload, setErrorUpload] = useState('');
+
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append('image', file);
+    setLoadingUpload(true);
+    try {
+      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+      setSellerLogo(data);
+      setLoadingUpload(false);
+    } catch (error) {
+      setErrorUpload(error.message);
+      setLoadingUpload(false);
     }
+  };
 
   return (
     <div>
@@ -144,12 +168,15 @@ export default function ProfileScreen() {
                                         <label htmlFor='sellerLogo' style={{ marginLeft: "30px" }}>Seller Logo</label>
                                         <input
                                             id="sellerLogo"
-                                            type="text"
+                                            type="file"
                                             placeholder = "Enter Seller Logo"
-                                            value= {sellerLogo}
                                             style={{ marginLeft: "30px" }}
-                                            onChange= {(e) => setSellerLogo(e.target.value)}
+                                            onChange= {uploadFileHandler}
                                         ></input>
+                                                     {loadingUpload && <LoadingBox></LoadingBox>}
+                                         {errorUpload && (
+                                            <MessageBox variant="danger">{errorUpload}</MessageBox>
+                                        )}
                                     </div>
                                     <br/>
                                     <div>
