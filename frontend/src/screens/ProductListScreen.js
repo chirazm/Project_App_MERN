@@ -4,7 +4,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { useNavigate, useLocation  } from 'react-router-dom';
 import { createProduct, deleteProduct, listProducts } from '../actions/productActions';
-import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../constants/productConstants';
+import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../constants/productConstant';
 
 export default function ProductListScreen() {
   const navigate = useNavigate();

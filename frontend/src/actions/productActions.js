@@ -21,7 +21,7 @@ import {
   PRODUCT_REVIEW_CREATE_REQUEST,
   PRODUCT_REVIEW_CREATE_SUCCESS,
   PRODUCT_REVIEW_CREATE_FAIL,
-} from '../constants/productConstants';
+} from '../constants/productConstant';
 
 export const listProducts =
   ({
