@@ -24,7 +24,7 @@ export default function OrderListScreen() {
   const dispatch = useDispatch();
   useEffect(() => {
       dispatch(listOrders({ seller: sellerMode ? userInfo._id : ''}));
-  }, [dispatch, successDelete]);
+  }, [dispatch, successDelete, sellerMode, userInfo._id]);
   const deleteHandler = (order) => {
     if (window.confirm('Are you sure to delete?')) {
         dispatch(deleteOrder(order._id));
