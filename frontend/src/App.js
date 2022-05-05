@@ -27,7 +27,10 @@ import SearchScreen from './screens/SearchScreen';
 import { listProductCategories } from './actions/productActions';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
-
+import DashboardScreen from './screens/DashbordScreen'
+import MapScreen from './screens/MapScreen';
+import SupportScreen from './screens/SupportScreen';
+import ChatBox from './components/ChatBox';
 function App() {
   const cart = useSelector((state) => state.cart);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
@@ -179,7 +182,7 @@ function App() {
             ></Route>
             <Route
               path="/product/:id/edit"
-              element={ProductEditScreen}
+              element={<ProductEditScreen />}
               exact
             ></Route>
             <Route path="/signin" element={<SigninScreen />}></Route>
@@ -222,7 +225,14 @@ function App() {
                 </PrivateRoute>
               }
             />
-            
+             <Route
+              path="/map"
+              element={
+                <PrivateRoute>
+                  <MapScreen />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/productlist"
               element={
@@ -264,8 +274,22 @@ function App() {
                 </AdminRoute>
               }
             />
-            
-           
+            <Route
+              path="/dashboard"
+              element={
+                <AdminRoute>
+                  <DashboardScreen />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/support"
+              element={
+                <AdminRoute>
+                  <SupportScreen />
+                </AdminRoute>
+              }
+            />
             <Route
               path="/productlist/seller"
               element={
@@ -287,7 +311,7 @@ function App() {
           </Routes>
         </main>
         <footer className="row center">
-          
+        {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
           <div>All right reserved</div>{' '}
         </footer>
       </div>

@@ -93,7 +93,7 @@ export default function ProductEditScreen() {
 
   return (
     <div>
-      <form className="form" onSubmit={submitHandler}>
+      <form className="form" onSubmit={submitHandler} style={{marginTop:"15px", maxWidth:"500px"}}>
         <div>
           <h1>Edit Product </h1>
         </div>
@@ -104,35 +104,35 @@ export default function ProductEditScreen() {
         ) : (
           <>
             <div>
-              <label htmlFor="name" style={{marginLeft:"50px"}}>Name</label>
+              <label htmlFor="name" style={{marginLeft:"30px"}}>Name</label>
               <input
                 id="name"
                 type="text"
                 placeholder="Enter name"
                 value={name}
-                style={{marginLeft:"50px"}}
+                style={{marginLeft:"30px"}}
                 onChange={(e) => setName(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="price" style={{marginLeft:"50px"}}>Price</label>
+              <label htmlFor="price" style={{marginLeft:"30px"}}>Price</label>
               <input
                 id="price"
                 type="text"
                 placeholder="Enter price"
                 value={price}
-                style={{marginLeft:"50px"}}
+                style={{marginLeft:"30px"}}
                 onChange={(e) => setPrice(e.target.value)}
               ></input>
             </div>
 
             <div>
-              <label htmlFor="image" style={{marginLeft:"50px"}}>Image File</label>
+              <label htmlFor="image" style={{marginLeft:"30px"}}>Image File</label>
               <input
                 type="file"
                 id="image"
                 label="Choose Image"
-                style={{marginLeft:"50px"}}
+                style={{marginLeft:"30px"}}
                 onChange={uploadFileHandler}
               ></input>
               {loadingUpload && <LoadingBox></LoadingBox>}
@@ -141,35 +141,35 @@ export default function ProductEditScreen() {
               )}
             </div>
             <div>
-              <label htmlFor="category" style={{marginLeft:"50px"}}>Category</label>
+              <label htmlFor="category" style={{marginLeft:"30px"}}>Category</label>
               <input
                 id="category"
                 type="text"
                 placeholder="Enter category"
                 value={category}
-                style={{marginLeft:"50px"}}
+                style={{marginLeft:"30px"}}
                 onChange={(e) => setCategory(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="brand" style={{marginLeft:"50px"}}>Brand</label>
+              <label htmlFor="brand" style={{marginLeft:"30px"}}>Brand</label>
               <input
                 id="brand"
                 type="text"
                 placeholder="Enter brand"
                 value={brand}
-                style={{marginLeft:"50px"}}
+                style={{marginLeft:"30px"}}
                 onChange={(e) => setBrand(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="countInStock" style={{marginLeft:"50px"}}>Count In Stock</label>
+              <label htmlFor="countInStock" style={{marginLeft:"30px"}}>Count In Stock</label>
               <input
                 id="countInStock"
                 type="text"
                 placeholder="Enter countInStock"
                 value={countInStock}
-                style={{marginLeft:"50px"}}
+                style={{marginLeft:"30px"}}
                 onChange={(e) => setCountInStock(e.target.value)}
               ></input>
             </div>
@@ -181,13 +181,13 @@ export default function ProductEditScreen() {
                 type="text"
                 placeholder="Enter description"
                 value={description}
-                style={{marginLeft:"50px", maxWidth:"400px"}}
+                style={{marginLeft:"30px", maxWidth:"400px"}}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
             <div>
               <label></label>
-              <button className="primary" type="submit" style={{marginLeft:"160px"}}>
+              <button className="primary" type="submit" style={{marginLeft:"130px"}}>
                 Update
               </button>
             </div>

@@ -145,6 +145,7 @@ export default function ProductScreen(props) {
                         <button
                           onClick={addToCartHandler}
                           className="primary block"
+                          style={{marginLeft:"0px"}}
                         >
                           Add to Cart
                         </button>
@@ -171,12 +172,12 @@ export default function ProductScreen(props) {
               ))}
               <li>
                 {userInfo ? (
-                  <form className="form" onSubmit={submitHandler}>
+                  <form className="form" onSubmit={submitHandler} style={{maxWidth:"350px"}}>
                     <div>
-                      <h2>Write a customer review</h2>
+                      <h2 style={{ textAlign:"center" }}>Write a customer review</h2>
                     </div>
                     <div>
-                      <label htmlFor="rating">Rating</label>
+                      <label htmlFor="rating" style={{ marginLeft:"3px" }}>Rating</label>
                       <select
                         id="rating"
                         value={rating}
@@ -191,7 +192,7 @@ export default function ProductScreen(props) {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="comment">Comment</label>
+                      <label htmlFor="comment" style={{ marginLeft:"3px" }}>Comment</label>
                       <textarea
                         id="comment"
                         value={comment}
@@ -200,7 +201,7 @@ export default function ProductScreen(props) {
                     </div>
                     <div>
                       <label />
-                      <button className="primary" type="submit">
+                      <button className="primary" type="submit" style={{marginLeft :"60px"}}>
                         Submit
                       </button>
                     </div>

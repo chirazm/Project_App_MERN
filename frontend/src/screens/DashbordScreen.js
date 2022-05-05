@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Chart from 'react-google-charts';
 import { summaryOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import Chart from 'react-google-charts';
 
 export default function DashboardScreen() {
   const orderSummary = useSelector((state) => state.orderSummary);
@@ -49,48 +49,54 @@ export default function DashboardScreen() {
                 </span>
               </div>
               <div className="summary-body">
-                $
+                
                 {summary.orders[0]
                   ? summary.orders[0].totalSales.toFixed(2)
-                  : 0}
+                  : 0} TND
               </div>
             </li>
           </ul>
           <div>
             <div>
               <h2>Sales</h2>
-              {summary.dailyOrders.length === 0 ? (
-                <MessageBox>No Sale</MessageBox>
-              ) : (
-                <Chart
-                  width="100%"
+              {
+                summary.dailyOrders.length === 0 ? (
+                  <MessageBox>No Sale</MessageBox>
+                ) : (
+                  <Chart width="100%"  
                   height="400px"
-                  chartType="AreaChart"
+                  chartType='AreaChart'
                   loader={<div>Loading Chart</div>}
                   data={[
                     ['Date', 'Sales'],
                     ...summary.dailyOrders.map((x) => [x._id, x.sales]),
                   ]}
-                ></Chart>
-              )}
+                  >
+                  </Chart>
+                )
+              }
             </div>
           </div>
           <div>
-            <h2>Categories</h2>
-            {summary.productCategories.length === 0 ? (
-              <MessageBox>No Category</MessageBox>
-            ) : (
-              <Chart
-                width="100%"
-                height="400px"
-                chartType="PieChart"
-                loader={<div>Loading Chart</div>}
-                data={[
-                  ['Category', 'Products'],
-                  ...summary.productCategories.map((x) => [x._id, x.count]),
-                ]}
-              />
-            )}
+            <div>
+              <h2>Categories</h2>
+              {
+                summary.productCategories.length === 0 ? (
+                  <MessageBox>No Category</MessageBox>
+                ) : (
+                  <Chart width="100%"  
+                  height="400px"
+                  chartType='PieChart'
+                  loader={<div>Loading Chart</div>}
+                  data={[
+                    ['Category', 'Products'],
+                    ...summary.productCategories.map((x) => [x._id, x.count]),
+                  ]}
+                  >
+                  </Chart>
+                )
+              }
+            </div>
           </div>
         </>
       )}

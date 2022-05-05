@@ -4,7 +4,7 @@ import { detailsUser, updateUserProfile } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import MessageBoxTimer from '../components/MessageBoxTimer';
-import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstant';
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import  Axios  from 'axios';
 
 export default function ProfileScreen() {
@@ -112,7 +112,7 @@ export default function ProfileScreen() {
                                 style={{ marginLeft: "30px" }}
                                 ></input>
                             </div>
-                            <br/> <br/>
+                            <br/> 
                             <div>
                                 <label htmlFor='email' style={{ marginLeft: "30px" }}> Email </label>
                                 <input
@@ -124,7 +124,7 @@ export default function ProfileScreen() {
                                 style={{ marginLeft: "30px" }}
                                 ></input>
                             </div>
-                            <br/> <br/>
+                            <br/> 
                             <div>
                                 <label htmlFor='password' style={{ marginLeft: "30px" }}> Password </label>
                                 <input
@@ -136,7 +136,7 @@ export default function ProfileScreen() {
                                 style={{ marginLeft: "30px" }}
                                 ></input>
                             </div>
-                            <br/> <br/>
+                            <br/> 
                             <div>
                                 <label htmlFor='confirmPassword' style={{ marginLeft: "30px" }}> Confirm Password </label>
                                 <input
@@ -147,11 +147,11 @@ export default function ProfileScreen() {
                                 style={{ marginLeft: "30px" }}
                                 ></input>
                             </div>
-                            <br/> <br/> 
+                    
                             {
                                 user.isSeller && (
                                     <>
-                                    <h2>Seller</h2>
+                                    <h1>Seller Profile</h1>
                                     <div>
                                         <label htmlFor='sellerName' style={{ marginLeft: "30px" }}>Seller Name</label>
                                         <input
@@ -210,6 +210,7 @@ export default function ProfileScreen() {
                 </div>
             </div>
         </form>
+        <br/>  <br/>
     </div>
   )
 }
