@@ -64,7 +64,7 @@ function App() {
               <i className="fa fa-bars"></i>
             </button>
             <Link className="brand" to="/">
-              amazona
+              YoYo.Shop
             </Link>
           </div>
           <div>

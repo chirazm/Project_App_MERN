@@ -105,7 +105,7 @@ export default function ProductScreen(props) {
                   <li>
                     <div className="row">
                       <div>Price</div>
-                      <div className="price">${product.price}</div>
+                      <div className="price">{product.price} TND</div>
                     </div>
                   </li>
                   <li>

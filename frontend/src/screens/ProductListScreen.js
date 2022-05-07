@@ -111,7 +111,7 @@ export default function ProductListScreen(props) {
                     <button
                       type="button"
                       className="small"
-                      style={{   backgroundColor : 'green', fontFamily:'bold' }}
+                      style={{  color: "green", fontWeight:'bold', borderColor: "green" }}
                       onClick={() => navigate(`/product/${product._id}/edit`)}
                     >
                       Edit
@@ -120,7 +120,7 @@ export default function ProductListScreen(props) {
                       type="button"
                       className="small"
                       onClick={() => deleteHandler(product)}
-                      style={{   backgroundColor : 'red', fontFamily:'bold' }}
+                      style={{  color: "red", fontWeight:'bold', borderColor: "red" }}
 
                     >
                       Delete

@@ -73,7 +73,7 @@ export default function OrderListScreen() {
                     type='button' 
                     className='small' 
                     onClick={()=> deleteHandler(order)}
-                    style={{   backgroundColor : 'red', fontFamily:'bold' }}
+                    style={{  color: "red", fontWeight:'bold', borderColor: "red" }}
 
                     > 
                     Delete

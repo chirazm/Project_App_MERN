@@ -66,7 +66,7 @@ export default function UserListScreen() {
                   <button
                     type="button"
                     className="small"
-                    style={{   backgroundColor : 'green', fontFamily:'bold' }}
+                    style={{  color: "green", fontWeight:'bold', borderColor: "green" }}
                     onClick={() => navigate(`/user/${user._id}/edit`)}
                   >
                     Edit
@@ -75,7 +75,7 @@ export default function UserListScreen() {
                     type="button"
                     className="small"
                     onClick={() => deleteHandler(user)}
-                    style={{   backgroundColor : 'red', fontFamily:'bold' }}
+                    style={{  color: "red", fontWeight:'bold', borderColor: "red" }}
                   >
                     Delete
                   </button>
