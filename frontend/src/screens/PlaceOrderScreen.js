@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { createOrder } from '../actions/orderActions';
@@ -26,6 +26,7 @@ export default function PlaceOrderScreen(props) {
   const placeOrderHandler = () => {
     dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
   };
+
   useEffect(() => {
     if (success) {
       navigate(`/order/${order._id}`);
