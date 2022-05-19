@@ -48,6 +48,7 @@ function App() {
     error: errorCategories,
     categories,
   } = productCategoryList;
+  
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);

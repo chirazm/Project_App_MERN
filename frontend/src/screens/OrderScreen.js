@@ -156,12 +156,7 @@ export default function OrderScreen() {
                   <div>{order.shippingPrice.toFixed(2)} TND</div>
                 </div>
               </li>
-              <li>
-                <div className="row">
-                  <div>Tax</div>
-                  <div>{order.taxPrice.toFixed(2)} TND</div>
-                </div>
-              </li>
+              
               <li>
                 <div className="row">
                   <div>
