@@ -32,6 +32,10 @@ export default function PlaceOrderScreen(props) {
       dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [dispatch, order, navigate, success]);
+
+  setTimeout(function(){
+    window.location.reload(1);
+ }, 1000);
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
