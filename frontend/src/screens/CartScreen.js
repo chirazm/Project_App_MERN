@@ -68,7 +68,7 @@ export default function CartScreen(props) {
                   <div>
                     <button 
                       type='button'
-                      onClick={()=> removeFromCartHandler(item.product)}>Delete</button>
+                      onClick={()=> removeFromCartHandler(item.product)}>Delete</button>  
                   </div>
                 </div>
               </li>

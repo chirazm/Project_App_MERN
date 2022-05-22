@@ -24,7 +24,7 @@ export default function UserListScreen() {
 
   const deleteHandler = (user) => {
     if (window.confirm('Are you sure?')) {
-      dispatch(deleteUser(user._id));
+      dispatch(deleteUser(user._id)); //userAction
     }
   }
 

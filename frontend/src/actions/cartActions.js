@@ -1,4 +1,4 @@
-import Axios  from "axios";
+import Axios  from "axios"; //Axios est une bibliothèque JavaScript fonctionnant comme un client HTTP
 import { 
     CART_ADD_ITEM, 
     CART_ADD_ITEM_FAIL, 
@@ -7,6 +7,7 @@ import {
     CART_SAVE_SHIPPING_ADDRESS 
 } from "../constants/cartConstants";
 
+//The get , post , or delete methods are convenience methods for the basic axios API
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
     const { data } = await Axios.get(`/api/products/${productId}`);
     const {
